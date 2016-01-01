@@ -1,0 +1,44 @@
+{
+  "name": "uphold-sdk-node",
+  "version": "0.0.0-semantically-released",
+  "description": "An SDK for the Uphold API",
+  "main": "src/uphold.js",
+  "scripts": {
+    "commit": "git-cz",
+    "test": "mocha src/uphold.test.js -w",
+    "test:single": "istanbul cover -x *.test.js _mocha -- -R spec src/uphold.test.js",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DanWebb/uphold-sdk-node.git"
+  },
+  "keywords": [
+    "uphold",
+    "node",
+    "js",
+    "sdk",
+    "api",
+    "wrapper"
+  ],
+  "author": "Dan Webb <d.c.webb1993@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DanWebb/uphold-sdk-node/issues"
+  },
+  "homepage": "https://github.com/DanWebb/uphold-sdk-node#readme",
+  "dependencies": {
+    "request": "2.67.0"
+  },
+  "devDependencies": {
+    "chai": "3.4.1",
+    "commitizen": "2.4.6",
+    "cz-conventional-changelog": "1.1.5",
+    "istanbul": "0.4.1",
+    "mocha": "2.3.4",
+    "semantic-release": "^4.3.5"
+  },
+  "czConfig": {
+    "path": "node_modules/cz-conventional-changelog"
+  }
+}
