@@ -23,9 +23,9 @@ The Node.js Uphold SDK provides an easy way to get started using the [Uphold API
     * [userTransactions(range, callback)](#userTransactions)
     * [cardTransactions(card, range, callback)](#cardTransactions)
     * [transaction(id, callback)](#transaction)
-    * [createTransaction(card, currency, amount, destination, callback)](#createTransaction)
+    * [prepareTransaction(card, currency, amount, destination, callback)](#prepareTransaction)
     * [commitTransaction(card, transaction, message, callback)](#commitTransaction)
-    * [createAndCommitTransaction(options, callback)](#createAndCommitTransaction)
+    * [createTransaction(options, callback)](#createTransaction)
     * [cancelTransaction(card, transaction, callback)](#cancelTransaction)
     * [resendTransaction(card, transaction, callback)](#resendTransaction)
     * [contacts(callback)](#contacts)
@@ -510,9 +510,9 @@ Requests the public view of a single transaction
     </tbody>
 </table>
 
-<a name="createTransaction"></a>
-### createTransaction(card, currency, amount, destination, callback)
-Create a transaction
+<a name="prepareTransaction"></a>
+### prepareTransaction(card, currency, amount, destination, callback)
+Prepare a transaction
 
 <table>
     <thead>
@@ -587,9 +587,9 @@ Commit a transaction
     </tbody>
 </table>
 
-<a name="createAndCommitTransaction"></a>
-### createAndCommitTransaction(options, callback)
-Convenience method for creating & committing a transaction at once
+<a name="createTransaction"></a>
+### createTransaction(options, callback)
+Create & commit a transaction at once
 
 <table>
     <thead>

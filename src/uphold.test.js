@@ -275,9 +275,9 @@ describe('Uphold', function() {
         });
     });
 
-    describe('createTransaction', function() {
-        it('Should create a transaction then return it', function(done) {
-            Uphold.createTransaction(config.cards.moneyCard.id, 'GBP', '0.01', config.cards.newCard.id, function(err, transaction) {
+    describe('prepareTransaction', function() {
+        it('Should create a transaction without committing it then return it', function(done) {
+            Uphold.prepareTransaction(config.cards.moneyCard.id, 'GBP', '0.01', config.cards.newCard.id, function(err, transaction) {
                 expect(err).to.equal(null);
                 isTransaction(transaction);
                 expect(transaction.origin.CardId).to.equal(config.cards.moneyCard.id);
@@ -291,7 +291,7 @@ describe('Uphold', function() {
 
     describe('commitTransaction', function() {
         it('Should commit the transaction and return it with a status of "completed" & the message provided', function(done) {
-            Uphold.createTransaction(config.cards.moneyCard.id, 'GBP', '0.01', config.cards.newCard.id, function(err, transaction) {
+            Uphold.prepareTransaction(config.cards.moneyCard.id, 'GBP', '0.01', config.cards.newCard.id, function(err, transaction) {
                 expect(err).to.equal(null);
                 Uphold.commitTransaction(config.cards.moneyCard.id, transaction.id, 'Test transaction', function(err, transaction) {
                     expect(err).to.equal(null);
@@ -304,9 +304,9 @@ describe('Uphold', function() {
         });
     });
 
-    describe('createAndCommitTransaction', function() {
+    describe('createTransaction', function() {
         it('Should return with a completed transaction object', function(done) {
-            Uphold.createAndCommitTransaction({
+            Uphold.createTransaction({
                 card: config.cards.moneyCard.id,
                 currency: 'GBP',
                 amount: '0.01',

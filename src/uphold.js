@@ -231,14 +231,14 @@ module.exports = function(config) {
         },
 
         /**
-         * Create a transaction
+         * Prepare a transaction
          * @param {string} card - the id of the card to transfer value from
          * @param {string} currency - the currency to denominate the transaction by
          * @param {string} amount - the amount of value to send in the denominated currency
          * @param {string} destination - a card id, bitcoin address, email address or Uphold username
          * @param callback - responds with an object containing details of the transaction
          */
-        createTransaction: function(card, currency, amount, destination, callback) {
+         prepareTransaction: function(card, currency, amount, destination, callback) {
             return sendRequest({
                 resource: '/me/cards/'+card+'/transactions',
                 method: 'POST',
@@ -272,7 +272,7 @@ module.exports = function(config) {
         },
 
         /**
-         * Convenience method for creating & committing a transaction at once
+         * Create & commit a transaction at once
          * @param {string} options.card - the id of the card to transfer value from
          * @param {string} options.currency - the currency to denominate the transaction by
          * @param {string} options.amount - the amount of value to send in the denominated currency
@@ -280,14 +280,19 @@ module.exports = function(config) {
          * @param {string} options.message - an optional custom message for the transaction
          * @param callback - responds with an object containing details of the transaction
          */
-        createAndCommitTransaction: function(options, callback) {
-            var self = this;
-
-            self.createTransaction(options.card, options.currency, options.amount, options.destination, function(err, transaction) {
-                if(err) return callback(err, null);
-
-                self.commitTransaction(options.card, transaction.id, options.message, callback);
-            });
+        createTransaction: function(options, callback) {
+            return sendRequest({
+                resource: '/me/cards/'+options.card+'/transactions?commit=1',
+                method: 'POST',
+                form: {
+                    'denomination': {
+                        'currency': options.currency,
+                        'amount': options.amount
+                    },
+                    'destination': options.destination,
+                    'message': options.message
+                }
+            }, callback);
         },
 
         /**
