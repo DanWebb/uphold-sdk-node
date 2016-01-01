@@ -92,6 +92,11 @@ The `config` object passed in here can contain any of the following properties:
             <td>application secret</td>
         </tr>
         <tr>
+            <td>config.scope</td>
+            <td><code>string</code></td>
+            <td>comma separated list of permissions to request</td>
+        </tr>
+        <tr>
             <td>config.bearer</td>
             <td><code>string</code></td>
             <td>Uphold API token</td>

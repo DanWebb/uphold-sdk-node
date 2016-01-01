@@ -6,6 +6,7 @@ var request = require('request');
  * @param {string} config.version - optional Uphold API version, will default to latest stable
  * @param {string} config.key - application API key (Client ID)
  * @param {string} config.secret - application secret
+ * @param {string} config.scope - comma separated list of permissions to request
  * @param {string} config.bearer - Uphold API token
  */
 module.exports = function(config) {
