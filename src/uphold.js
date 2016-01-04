@@ -96,6 +96,7 @@ module.exports = function(config) {
          */
         addToken: function(token) {
             config.bearer = token;
+            return this;
         },
 
         // TICKERS

@@ -245,6 +245,8 @@ Add or overwrite the configs bearer property.
     </tbody>
 </table>
 
+Note: this method is chain-able.
+
 <a name="tickers"></a>
 ### tickers(callback)
 Get all tickers

@@ -95,6 +95,24 @@ describe('Uphold', function() {
         });
     });
 
+    describe('addToken', function() {
+        it('Should update config.bearer', function(done) {
+            Uphold.addToken('fakeToken');
+            Uphold.user(function(err, user) {
+                isError(err);
+                done();
+            });
+        });
+
+        it('Should be chainable', function(done) {
+            Uphold.addToken('bea93d3c41718d86cb7aee225a78fec99a77f487').user(function(err, user) {
+                expect(err).to.equal(null);
+                expect(user).to.be.a('object');
+                done();
+            });
+        });
+    });
+
     // TICKERS
 
     function isTicker(ticker) {
