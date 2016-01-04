@@ -140,10 +140,8 @@ Uphold.createToken(req.params.code, function(err, token) {
     if(err) return customErrorHandler(err);
     // store the token for later use
     var storedBearer = token;
-    // add the token to the current uphold-sdk-node configs bearer property
-    Uphold.addToken(storedBearer.access_token);
-    // we can now make authenticated calls
-    Uphold.user(function(err, user) {
+    // add the token to the current uphold-sdk-node configs bearer property and make authenticated calls
+    Uphold.addToken(storedBearer.access_token).user(function(err, user) {
         if(err) return customErrorHandler(err);
         console.log(user);
     });
