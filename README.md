@@ -57,7 +57,7 @@ npm install uphold-sdk-node
 Once this has finished installing the SDK may be initialized with this line of javascript:
 
 ```js
-var Uphold = require('./uphold-sdk-node')(config);
+var Uphold = require('uphold-sdk-node')(config);
 ```
 
 The `config` object passed in here can contain any of the following properties:
@@ -112,7 +112,7 @@ The Uphold Node SDK only supports the [Web Application Flow](https://uphold.com/
 To authenticate a user and retrieve a bearer token to access their account the user must first be redirected to the Uphold auth URL to accept the application permissions requested in `scope`. A bearer token can then be created using the code parameter provided by Uphold while redirecting the user back to your application. A simplified example of how you might do this with the Uphold Node SDK can be seen below:
 
 ```js
-var Uphold = require('./uphold-sdk-node')({
+var Uphold = require('uphold-sdk-node')({
     "key": "<your applications api key>",
     "secret": "<your applications secret>",
     "scope": "cards:read,cards:write,contacts:read,contacts:write,transactions:read,transactions:write,user:read"
@@ -128,7 +128,7 @@ res.redirect(auth.url);
 Once Upholds redirected the user back to your applications redirect url:
 
 ```js
-var Uphold = require('./uphold-sdk-node')({
+var Uphold = require('uphold-sdk-node')({
     "key": "<your applications api key>",
     "secret": "<your applications secret>"
 });
@@ -154,7 +154,7 @@ Uphold.createToken(req.params.code, function(err, token) {
 Once authenticated the Uphold bearer token can be passed into the config within the `config.bearer` property and API calls can be made using methods of the Uphold Node SDK like so:
 
 ```js
-var Uphold = require('./uphold-sdk-node')({
+var Uphold = require('uphold-sdk-node')({
     "host": "api-sandbox.uphold.com",
     "bearer": "<bearer token>"
 });
