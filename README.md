@@ -6,7 +6,7 @@ The Node.js Uphold SDK provides an easy way to get started using the [Uphold API
 ## Table of contents
 
 * [Getting Started](#gettingStarted)
-    * [Instillation](#instillation)
+    * [Installation](#installation)
     * [Authentication](#authentication)
     * [Basic Usage](#basicUsage)
 * [Methods](#methods)
@@ -44,8 +44,8 @@ To begin follow the [Uphold sandbox getting started guide](https://uphold.com/en
 
 In order to learn more about the Uphold API, make sure you also look over the [API documentation.](https://uphold.com/en/developer/api/documentation/)
 
-<a name="instillation"></a>
-### Instillation
+<a name="installation"></a>
+### Installation
 
 Make sure you have node & npm installed then run:
 
