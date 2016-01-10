@@ -1,5 +1,7 @@
 # uphold-sdk-node
 [![Travis](https://travis-ci.org/DanWebb/uphold-sdk-node.svg)](https://travis-ci.org/DanWebb/uphold-sdk-node)
+[![Codecov](https://img.shields.io/codecov/c/github/DanWebb/uphold-sdk-node.svg)](https://codecov.io/github/DanWebb/uphold-sdk-node)
+[![Version](https://img.shields.io/npm/v/uphold-sdk-node.svg)](https://www.npmjs.com/package/uphold-sdk-node)
 
 The Node.js Uphold SDK provides an easy way to get started using the [Uphold API](https://uphold.com/en/developer/api/documentation/) with Node.
 
