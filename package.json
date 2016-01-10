@@ -5,6 +5,7 @@
   "main": "src/uphold.js",
   "scripts": {
     "commit": "git-cz",
+    "report-coverage": "cat ./coverage/lcov.info | codecov",
     "test": "mocha src/uphold.test.js -w",
     "test:single": "istanbul cover -x *.test.js _mocha -- -R spec src/uphold.test.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "chai": "3.4.1",
+    "codecov.io": "0.1.6",
     "commitizen": "2.4.6",
     "cz-conventional-changelog": "1.1.5",
     "istanbul": "0.4.1",
