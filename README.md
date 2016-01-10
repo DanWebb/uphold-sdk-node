@@ -880,6 +880,6 @@ Get entries for the Uphold reserve ledger
 <a name="contributing"></a>
 ## Contributing
 
-All submissions are welcome. To submit a change, fork this repo, make your changes, run the tests (`npm run test:single`), commit your changes, and send a pull request.
+All submissions are welcome. To submit a change, fork this repo, make your changes, run the tests (`npm run test:single`), commit your changes (`npm run commit`), and send a pull request.
 
 Alternatively if you've found a bug that doesn't already have an issue or just want to suggest something that hasn't already been suggested [submit an issue](https://github.com/DanWebb/uphold-sdk-node/issues/new)
