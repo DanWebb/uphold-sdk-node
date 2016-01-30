@@ -18,7 +18,7 @@ module.exports = function(config) {
     function responseHandler(err, res, body, callback) {
         var error = null;
         body = JSON.parse(body);
-
+console.log(res);
         if(res.headers['x-bitreserve-otp']) return callback(error, { otp: true });
 
         if(body.errors || body.error || parseInt(res.statusCode)>=400) {
@@ -45,8 +45,8 @@ module.exports = function(config) {
         options.headers['content-type'] = 'application/x-www-form-urlencoded';
 
         if(!options.headers.Authorization) {
-            if(config.bearer) options.headers.Authorization = 'Bearer ' + config.bearer;
-            else if(config.pat) options.headers.Authorization = 'Basic ' + new Buffer(config.pat+':'+'X-OAuth-Basic').toString('base64');
+            if(config.bearer) options.auth = { bearer: config.bearer };
+            else if(config.pat) options.auth = { user: config.pat, pass: 'X-OAuth-Basic' };
         }
 
         request(options, function(err, res, body) {
@@ -87,9 +87,7 @@ module.exports = function(config) {
             return sendRequest({
                 url: 'https://'+config.host+'/oauth2/token',
                 method: 'POST',
-                headers: {
-                    'Authorization': 'Basic ' + new Buffer(config.key+':'+config.secret).toString('base64')
-                },
+                auth: { user: config.key, pass: config.secret },
                 form: {
                     'code': code,
                     'grant_type': 'authorization_code'
@@ -115,15 +113,13 @@ module.exports = function(config) {
          * @param callback - responds with an object containing accessToken
          */
         createPAT: function(username, password, description, otp, callback) {
-            var headers = {
-                'Authorization': 'Basic ' + new Buffer(username+':'+password).toString('base64')
-            };
-
+            var headers = {};
             if(otp) headers['X-Bitreserve-OTP'] = otp;
 
             return sendRequest({
                 url: 'https://'+config.host+'/'+config.version+'/me/tokens',
                 method: 'POST',
+                auth: { user: username, pass: password },
                 headers: headers,
                 form: { 'description': description }
             }, callback);
