@@ -3,7 +3,7 @@ var config = {
         "host": "api-sandbox.uphold.com",
         "key": "9a8368e09726435cb2e00401b6bb045ded5318a8",
         "secret": "f5cd1ff19edd62c680efec1e456efa406ebb925f",
-        "scope": "cards:read,cards:write,contacts:read,contacts:write,transactions:read,transactions:write,user:read",
+        "scope": "accounts:read,cards:read,cards:write,contacts:read,contacts:write,transactions:deposit,transactions:read,transactions:transfer:application,transactions:transfer:others,transactions:transfer:self,transactions:withdraw,user:read",
         //"bearer": "bea93d3c41718d86cb7aee225a78fec99a77f487"
         "pat": "94e935a0ac9b954678af35d3db022fe33e3e1dbc"
     },
