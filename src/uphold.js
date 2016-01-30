@@ -7,6 +7,7 @@ var request = require('request');
  * @param {string} config.key - application API key (Client ID)
  * @param {string} config.secret - application secret
  * @param {string} config.scope - comma separated list of permissions to request
+ * @param {string} config.pat - Uphold API Personal Access Token
  * @param {string} config.bearer - Uphold API token
  */
 module.exports = function(config) {
@@ -40,7 +41,11 @@ module.exports = function(config) {
         options.method = options.method || 'GET';
         options.headers = options.headers || {};
         options.headers['content-type'] = 'application/x-www-form-urlencoded';
-        if(config.bearer && !options.headers.Authorization) options.headers.Authorization = 'Bearer ' + config.bearer;
+
+        if(!options.headers.Authorization) {
+            if(config.bearer) options.headers.Authorization = 'Bearer ' + config.bearer;
+            else if(config.pat) options.headers.Authorization = 'Basic ' + new Buffer(config.pat+':'+'X-OAuth-Basic').toString('base64');
+        }
 
         request(options, function(err, res, body) {
             return responseHandler(err, res, body, callback);
@@ -98,6 +103,51 @@ module.exports = function(config) {
             config.bearer = token;
             return this;
         },
+
+        /**
+         * Create a Personal Access Token
+         * @param {string} username - account holders username
+         * @param {string} password - account holders password
+         * @param {string} description - A human-readable description of this PAT.
+         * @param {string} otp - (optional) one time password, applicable if two factor authentication is enabled on the account
+         * @param callback - responds with an object containg accessToken
+         */
+        createPAT: function(username, password, description, otp, callback) {
+            var headers = {
+                'Authorization': 'Basic ' + new Buffer(username+':'+password).toString('base64')
+            };
+
+            if(otp) headers['X-Bitreserve-OTP'] = otp;
+
+            return sendRequest({
+                url: 'https://'+config.host+'/'+config.version+'/me/tokens',
+                method: 'POST',
+                headers: headers,
+                form: { 'description': description }
+            }, callback);
+        },
+
+        /**
+         * Revoke a Personal Access Token
+         * @param {string} pat - the PAT to revoke
+         * @param callback
+         */
+        revokePAT: function(pat, callback) {
+            return sendRequest({
+                method: 'DELETE',
+                resource: '/me/tokens/'+pat
+            }, callback);
+        },
+
+        /**
+         * Add or overwrite the configs pat property
+         * @param {string} pat - a Personal Access Token
+         */
+        addPAT: function(pat) {
+            config.pat = pat;
+            return this;
+        },
+
 
         // TICKERS
 

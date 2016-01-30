@@ -4,7 +4,8 @@ var config = {
         "key": "9a8368e09726435cb2e00401b6bb045ded5318a8",
         "secret": "f5cd1ff19edd62c680efec1e456efa406ebb925f",
         "scope": "cards:read,cards:write,contacts:read,contacts:write,transactions:read,transactions:write,user:read",
-        "bearer": "bea93d3c41718d86cb7aee225a78fec99a77f487"
+        //"bearer": "bea93d3c41718d86cb7aee225a78fec99a77f487"
+        "pat": "94e935a0ac9b954678af35d3db022fe33e3e1dbc"
     },
     "cards": {
         "newCard": {
@@ -112,6 +113,33 @@ describe('Uphold', function() {
             });
         });
     });
+
+    // var pat = '';
+    // describe('createPAT', function() {
+    //     it('Should error because no otp was given', function(done) {
+    //         Uphold.createPAT('daniel.webbb@gmail.com', 'xxxxx', 'test PAT', false, function(err, res) {
+    //             isError(err);
+    //             done();
+    //         });
+    //     });
+    //
+    //     it('Should return a pat', function(done) {
+    //         Uphold.createPAT('daniel.webbb@gmail.com', 'xxxxx', 'test PAT', '0000000', function(err, res) {
+    //             expect(err).to.equal(null);
+    //             expect(res.accessToken).to.be.a('string');
+    //             pat = res.accessToken;
+    //             done();
+    //         });
+    //     });
+    // });
+    //
+    // describe('revokePAT', function() {
+    //     it('Should revoke the PAT', function() {
+    //         Uphold.revokePAT(pat, function(err, res) {
+    //             done();
+    //         });
+    //     });
+    // });
 
     // TICKERS
 
