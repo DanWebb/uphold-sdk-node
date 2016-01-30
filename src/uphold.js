@@ -18,7 +18,7 @@ module.exports = function(config) {
     function responseHandler(err, res, body, callback) {
         var error = null;
         body = JSON.parse(body);
-console.log(res);
+
         if(res.headers['x-bitreserve-otp']) return callback(error, { otp: true });
 
         if(body.errors || body.error || parseInt(res.statusCode)>=400) {
