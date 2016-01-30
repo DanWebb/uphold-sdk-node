@@ -116,9 +116,10 @@ describe('Uphold', function() {
 
     // var pat = '';
     // describe('createPAT', function() {
-    //     it('Should error because no otp was given', function(done) {
+    //     it('Should return with otp response because no otp was given', function(done) {
     //         Uphold.createPAT('daniel.webbb@gmail.com', 'xxxxx', 'test PAT', false, function(err, res) {
-    //             isError(err);
+    //             expect(err).to.equal(null);
+    //             expect(res.otp).to.equal(true);
     //             done();
     //         });
     //     });

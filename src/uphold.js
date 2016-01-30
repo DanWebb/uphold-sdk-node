@@ -19,6 +19,8 @@ module.exports = function(config) {
         var error = null;
         body = JSON.parse(body);
 
+        if(res.headers['x-bitreserve-otp']) return callback(error, { otp: true });
+
         if(body.errors || body.error || parseInt(res.statusCode)>=400) {
             message = body.errors || body.error || res.statusMessage;
             // morph Upholds error object into a string

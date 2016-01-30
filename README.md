@@ -117,7 +117,9 @@ The `config` object passed in here can contain any of the following properties:
 <a name="authentication"></a>
 ### Authentication
 
-The Uphold Node SDK only supports the [Web Application Flow](https://uphold.com/en/developer/api/documentation/#web-application-flow) Oauth2 method of authentication currently which is the only recommended method of authentication for public facing web applications.
+The Uphold Node SDK supports the [Web Application Flow](https://uphold.com/en/developer/api/documentation/#web-application-flow) Oauth2 method of authentication which is the only recommended method of authentication for public facing web applications. For private scripts and tools [Personal Access Token (PAT)](https://uphold.com/en/developer/api/documentation/#personal-access-tokens-pat) authentication is also available.
+
+#### Web Application Flow
 
 To authenticate a user and retrieve a bearer token to access their account the user must first be redirected to the Uphold auth URL to accept the application permissions requested in `scope`. A bearer token can then be created using the code parameter provided by Uphold while redirecting the user back to your application. A simplified example of how you might do this with the Uphold Node SDK can be seen below:
 
@@ -125,7 +127,7 @@ To authenticate a user and retrieve a bearer token to access their account the u
 var Uphold = require('uphold-sdk-node')({
     "key": "<your applications api key>",
     "secret": "<your applications secret>",
-    "scope": "cards:read,cards:write,contacts:read,contacts:write,transactions:read,transactions:write,user:read"
+    "scope": "accounts:read,cards:read,cards:write,contacts:read,contacts:write,transactions:deposit,transactions:read,transactions:transfer:application,transactions:transfer:others,transactions:transfer:self,transactions:withdraw,user:read"
 });
 
 var auth = Uphold.buildAuthURL();
@@ -158,10 +160,32 @@ Uphold.createToken(req.params.code, function(err, token) {
 });
 ```
 
+#### Personal Access Token (PAT)
+
+Once created a PAT provides full access to your user account and bypasses Two Factor Authentication. An example of how to create and use a PAT with the Uphold Node SDK can be found below:
+
+```js
+var Uphold = require('uphold-sdk-node');
+
+Uphold.createPAT('username', 'password', 'PAT description', false, function(err, res) {
+    if(err) return customErrorHandler(err);
+    // if two factor authentication is enabled on the account a One Time Password (OTP) will be required
+    // once retrieved this method can be called again with the OTP like so
+    // Uphold.createPAT('username', 'password', 'PAT description', 'OTP', function(err, res) {});
+    if(res.otp) return getOTP();
+
+    // add the PAT to the current uphold-sdk-node configs pat property and make authenticated calls
+    Uphold.addPAT(res.accessToken).user(function(err, user) {
+        if(err) return customErrorHandler(err);
+        console.log(user);
+    });
+});
+```
+
 <a name="basicUsage"></a>
 ### Basic Usage
 
-Once authenticated the Uphold bearer token can be passed into the config within the `config.bearer` property and API calls can be made using methods of the Uphold Node SDK like so:
+Once authenticated the Uphold bearer token can be passed into the config within the `config.bearer` property and API calls can be made using methods of the Uphold Node SDK as the example below. Alternatively a PAT can be passed into the config with the `config.pat` property:
 
 ```js
 var Uphold = require('uphold-sdk-node')({
@@ -255,7 +279,6 @@ Add or overwrite the configs bearer property.
 
 Note: this method is chain-able.
 
-* [createPAT(username, password, description, otp, callback)](#createPAT)
 <a name="createPAT"></a>
 ### createPAT(username, password, description, otp, callback)
 Create a Personal Access Token.
@@ -297,7 +320,7 @@ Create a Personal Access Token.
     </tbody>
 </table>
 
-Note: this will return an "Unauthorized" error if OTP is not provided but two factor authentication is enabled on the account.
+Note: this will respond with `{ otp: true }` if OTP is not provided but two factor authentication is enabled on the account.
 
 <a name="revokePAT"></a>
 ### revokePAT(pat, callback)
