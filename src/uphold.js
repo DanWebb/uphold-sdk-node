@@ -25,7 +25,7 @@ module.exports = function(config) {
             if(typeof message === 'object') {
                 var tempMessage = '';
                 Object.keys(message).forEach(function(prop) {
-                    tempMessage += prop+': '+message[prop].map(function(val) { return val.message; }).join(', ');
+                    tempMessage += prop+': '+message[prop].code;
                 });
                 message = res.statusMessage+' - '+tempMessage;
             }
