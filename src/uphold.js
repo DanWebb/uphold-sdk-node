@@ -110,7 +110,7 @@ module.exports = function(config) {
          * @param {string} password - account holders password
          * @param {string} description - A human-readable description of this PAT.
          * @param {string} otp - (optional) one time password, applicable if two factor authentication is enabled on the account
-         * @param callback - responds with an object containg accessToken
+         * @param callback - responds with an object containing accessToken
          */
         createPAT: function(username, password, description, otp, callback) {
             var headers = {

@@ -15,6 +15,9 @@ The Node.js Uphold SDK provides an easy way to get started using the [Uphold API
     * [buildAuthURL(scope, state)](#buildAuthURL)
     * [createToken(code, callback)](#createToken)
     * [addToken(token)](#addToken)
+    * [createPAT(username, password, description, otp, callback)](#createPAT)
+    * [revokePAT(pat, callback)](#revokePAT)
+    * [addPAT(pat)](#addPAT)
     * [tickers(callback)](#tickers)
     * [tickersForCurrency(currency, callback)](#tickersForCurrency)
     * [cards(callback)](#cards)
@@ -102,6 +105,11 @@ The `config` object passed in here can contain any of the following properties:
             <td>config.bearer</td>
             <td><code>string</code></td>
             <td>Uphold API token</td>
+        </tr>
+        <tr>
+            <td>config.pat</td>
+            <td><code>string</code></td>
+            <td>Uphold API Personal Access Token, config.bearer will overwrite this.</td>
         </tr>
     </tbody>
 </table>
@@ -241,6 +249,99 @@ Add or overwrite the configs bearer property.
             <td>token</td>
             <td><code>string</code></td>
             <td>a bearer token</td>
+        </tr>
+    </tbody>
+</table>
+
+Note: this method is chain-able.
+
+* [createPAT(username, password, description, otp, callback)](#createPAT)
+<a name="createPAT"></a>
+### createPAT(username, password, description, otp, callback)
+Create a Personal Access Token.
+
+<table>
+    <thead>
+        <tr>
+            <td>Param</td>
+            <td>Type</td>
+            <td>Description</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>username</td>
+            <td><code>string</code></td>
+            <td>account holders username</td>
+        </tr>
+        <tr>
+            <td>password</td>
+            <td><code>string</code></td>
+            <td>account holders password</td>
+        </tr>
+        <tr>
+            <td>description</td>
+            <td><code>string</code></td>
+            <td>a human-readable description of this PAT</td>
+        </tr>
+        <tr>
+            <td>otp</td>
+            <td><code>string</code></td>
+            <td>One Time Password, applicable if two factor authentication is enabled on the account</td>
+        </tr>
+        <tr>
+            <td>callback(err, token)</td>
+            <td><code>callback</code></td>
+            <td>responds with an object containing accessToken</td>
+        </tr>
+    </tbody>
+</table>
+
+Note: this will return an "Unauthorized" error if OTP is not provided but two factor authentication is enabled on the account.
+
+<a name="revokePAT"></a>
+### revokePAT(pat, callback)
+Revoke a Personal Access Token
+
+<table>
+    <thead>
+        <tr>
+            <td>Param</td>
+            <td>Type</td>
+            <td>Description</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>pat</td>
+            <td><code>string</code></td>
+            <td>the PAT to revoke</td>
+        </tr>
+        <tr>
+            <td>callback(err, res)</td>
+            <td><code>callback</code></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<a name="addPAT"></a>
+### addPAT(pat)
+Add or overwrite the configs pat property
+
+<table>
+    <thead>
+        <tr>
+            <td>Param</td>
+            <td>Type</td>
+            <td>Description</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>pat</td>
+            <td><code>string</code></td>
+            <td>a Personal Access Token</td>
         </tr>
     </tbody>
 </table>
