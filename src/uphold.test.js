@@ -4,8 +4,8 @@ var config = {
         "key": "9a8368e09726435cb2e00401b6bb045ded5318a8",
         "secret": "f5cd1ff19edd62c680efec1e456efa406ebb925f",
         "scope": "accounts:read,cards:read,cards:write,contacts:read,contacts:write,transactions:deposit,transactions:read,transactions:transfer:application,transactions:transfer:others,transactions:transfer:self,transactions:withdraw,user:read",
-        //"bearer": "bea93d3c41718d86cb7aee225a78fec99a77f487"
-        "pat": "94e935a0ac9b954678af35d3db022fe33e3e1dbc"
+        "bearer": "ed28779c989bfa1125be2ea13b3a04b8db0bb3de"
+        //"pat": "94e935a0ac9b954678af35d3db022fe33e3e1dbc"
     },
     "cards": {
         "newCard": {
@@ -73,7 +73,7 @@ describe('Uphold', function() {
         // visit this url to generate a new code and test this method
         // https://sandbox.uphold.com/authorize/9a8368e09726435cb2e00401b6bb045ded5318a8?state=be248437557d577f2deb97457036d7fbf4e346e663ca1c6bd4878af382f38346954051e600662a5e4406b161a2cd9805&scope=cards:read,cards:write,contacts:read,contacts:write,transactions:read,transactions:write,user:read
         // it('Should respond with an access token if the code provided is valid', function(done) {
-        //     Uphold.createToken('01278c9221d06d4fe51fa38ce010179034e7b5a8', function(err, res) {
+        //     Uphold.createToken('83d0ee97a8da9602e08ef23265edd1e97ed7c1ac', function(err, res) {
         //         expect(err).to.equal(null);
         //         expect(res).to.be.a('object');
         //         expect(res.access_token).to.be.a('string');
@@ -106,7 +106,7 @@ describe('Uphold', function() {
         });
 
         it('Should be chainable', function(done) {
-            Uphold.addToken('bea93d3c41718d86cb7aee225a78fec99a77f487').user(function(err, user) {
+            Uphold.addToken('ed28779c989bfa1125be2ea13b3a04b8db0bb3de').user(function(err, user) {
                 expect(err).to.equal(null);
                 expect(user).to.be.a('object');
                 done();
