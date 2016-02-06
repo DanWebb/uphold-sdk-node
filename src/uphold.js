@@ -44,7 +44,7 @@ module.exports = function(config) {
         options.headers = options.headers || {};
         options.headers['content-type'] = 'application/x-www-form-urlencoded';
 
-        if(!options.headers.Authorization) {
+        if(!options.auth) {
             if(config.bearer) options.auth = { bearer: config.bearer };
             else if(config.pat) options.auth = { user: config.pat, pass: 'X-OAuth-Basic' };
         }
