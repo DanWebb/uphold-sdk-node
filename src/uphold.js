@@ -17,12 +17,19 @@ module.exports = function(config) {
 
     function responseHandler(err, res, body, callback) {
         var error = null;
-        body = JSON.parse(body);
 
         if(res.headers['x-bitreserve-otp']) return callback(error, { otp: true });
 
+        try {
+            body = JSON.parse(body);
+        } catch(e) {
+            error = new Error(e);
+            error.status = res.statusCode;
+            return callback(error, body);
+        }
+
         if(body.errors || body.error || parseInt(res.statusCode)>=400) {
-            message = body.errors || body.error || res.statusMessage;
+            var message = body.errors || body.error || res.statusMessage;
             // morph Upholds error object into a string
             if(typeof message === 'object') {
                 var tempMessage = '';
