@@ -20,6 +20,8 @@ The Node.js Uphold SDK provides an easy way to get started using the [Uphold API
     * [addPAT(pat)](#addPAT)
     * [tickers(callback)](#tickers)
     * [tickersForCurrency(currency, callback)](#tickersForCurrency)
+    * [accounts(callback)](#accounts)
+    * [account(id, callback)](#account)
     * [cards(callback)](#cards)
     * [card(id, callback)](#card)
     * [createCard(label, currency, callback)](#createCard)
@@ -418,6 +420,53 @@ Get tickers for a currency
     </tbody>
 </table>
 
+<a name="accounts"></a>
+### accounts(callback)
+Get all accounts
+
+<table>
+    <thead>
+        <tr>
+            <td>Param</td>
+            <td>Type</td>
+            <td>Description</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>callback(err, accounts)</td>
+            <td><code>callback</code></td>
+            <td>responds with an array of the current user’s accounts</td>
+        </tr>
+    </tbody>
+</table>
+
+<a name="account"></a>
+### account(id, callback)
+Get details of a single account
+
+<table>
+    <thead>
+        <tr>
+            <td>Param</td>
+            <td>Type</td>
+            <td>Description</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>id</td>
+            <td><code>string</code></td>
+            <td>account ID</td>
+        </tr>
+        <tr>
+            <td>callback(err, account)</td>
+            <td><code>callback</code></td>
+            <td>responds with an object containing details of the account</td>
+        </tr>
+    </tbody>
+</table>
+
 <a name="cards"></a>
 ### cards(callback)
 Get all cards
@@ -438,6 +487,9 @@ Get all cards
         </tr>
     </tbody>
 </table>
+
+
+
 
 <a name="card"></a>
 ### card(id, callback)
