@@ -173,6 +173,25 @@ module.exports = function(config) {
             return sendRequest({ resource: '/ticker/'+currency }, callback);
         },
 
+        // ACCOUNTS
+
+        /**
+         * Get all accounts
+         * @param callback - responds with an array containing an array of the current user’s accounts.
+        */
+        accounts: function(callback) {
+            return sendRequest({ resource: '/me/accounts' }, callback);
+        },
+
+        /**
+         * Get details of a single accounts
+         * @param {string} id - account ID
+         * @param callback - responds with an object containing details of the account
+         */
+        account: function(id, callback) {
+            return sendRequest({ resource: '/me/accounts/'+id }, callback);
+        },
+
         // CARDS
 
         /**
