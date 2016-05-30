@@ -188,7 +188,7 @@ module.exports = function(config) {
          * @param {string} id - account ID
          * @param callback - responds with an object containing details of the account
          */
-        card: function(id, callback) {
+        account: function(id, callback) {
             return sendRequest({ resource: '/me/accounts/'+id }, callback);
         },
 
