@@ -5,6 +5,9 @@
 
 The Node.js Uphold SDK provides an easy way to get started using the [Uphold API](https://uphold.com/en/developer/api/documentation/) with Node.
 
+## No longer maintained
+This library is no longer maintained in favor of the [official Uphold SDK](https://github.com/uphold/uphold-sdk-javascript)
+
 ## Table of contents
 
 * [Getting Started](#gettingStarted)
